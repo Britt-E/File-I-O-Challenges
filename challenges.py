@@ -20,7 +20,23 @@ def count_mentions(some_colour_word: str):
     """
     # hint - the .lower() method will convert a Python string to lowercase.
     # https://www.w3schools.com/python/ref_string_lower.asp
-    pass
+    count = 0
+    with open('colours_20_simple.csv') as file:
+        reader = csv.reader(file)
+
+        for row in reader:
+            english_name = row[2]
+            
+            if some_colour_word.lower() in english_name.lower():
+                count += 1
+    
+    return count 
+result = count_mentions("Beige")
+print(result)
+
+count_mentions('Beige')
+
+#  if some_colour in english_word = if "beige" in "green-beige"   
 
 
 def generate_coloured_text(colour_name: str):
@@ -42,7 +58,21 @@ def generate_coloured_text(colour_name: str):
     Example: supplying the argument "Alizarin Crimson" would result in a return 
     value of '<p style="color:#e32636;">Alizarin Crimson</p>'
     """
-    pass
+    with open('colours_865.csv') as file:
+        reader = csv.reader(file)
+
+        for row in reader:
+            hex_value = row[1]
+            english_name = row[2]
+            if colour_name == english_name:
+                html_element = f'<p style="color:{hex_value};">{english_name}</p>'
+        
+        # print(html_element)
+    return html_element
+
+generate_coloured_text("Alizarin Crimson")
+
+
 
 def galactic_speed_percentile(galactic_speed: float):
     """The "galaxies.csv" file is a .csv file WITHOUT a header. It describes
